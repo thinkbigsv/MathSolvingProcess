@@ -1,7 +1,7 @@
 /*
 *    main.js
 *    Mastering Data Visualization with D3.js
-*    Project 1 - Star Break Coffee
+*    Domain1_barplot
 */
 
 var margin = {left:80, right:20, top:50, bottom:100};
@@ -38,41 +38,6 @@ g.append("text")
 d3.csv("data/random_problemset.csv").then(function(data){
 
 	//console.log(data)
-
-/*	var a_0 = 0, a_1 = 0, b_0 = 0, b_1 = 0, c_0 = 0, c_1 = 0;
-
-	for (var i = data.length - 1; i >= 0; i--)
-	{
-		data[i].concept = +data[i].concept
-		data[i].strategy = +data[i].strategy
-		data[i].mistake = +data[i].mistake
-
-		if(data[i].concept == 0)
-			a_0++;
-		else
-			a_1++
-
-		if(data[i].strategy == 0)
-			b_0++;
-		else
-			b_1++;
-
-		if(data[i].mistake == 0)
-			c_0++;
-		else
-			c_1++;
-	}*/
-
-//	console.log(a_0 , a_1, b_0, b_1, c_0, c_1);
-
-/*	data.forEach(function(d){
-		d = +d
-	})*/
-
-/*	console.log(data.map(function(d){
-		return d.domain1;
-	}))*/
-
 	var a = 0, b = 0, c = 0, w = 0, xx = 0, yy = 0, z = 0;
 
 	data.forEach(function(d){
@@ -96,23 +61,13 @@ d3.csv("data/random_problemset.csv").then(function(data){
 			z++;
 	})
 
-//	console.log(a, b, c, d, e, f, g);
-
 	var x = d3.scaleBand()
-		/*.domain(data.map(function(d){
-			return d.domain[3];
-		}))*/
 		.domain(["다항식","실수와 허수","방정식과 부등식","도형의 방정식","집합과 명제","함수","경우의 수"])
 		.range([0,width])
 		.padding(0.6);
 
-	//var size = data.length/4;
 	var size = d3.max([a,b,c,w,xx,yy,z])
 	var y = d3.scaleLinear()
-		/*.domain([0, d3.max(data,function(d){
-			return d.revenue;
-		})])*/
-		//.domain([0,100])
 		.domain([0,size])
 		.range([height,0]);
 
@@ -128,9 +83,6 @@ d3.csv("data/random_problemset.csv").then(function(data){
 			});
 
 	var yAxisCall = d3.axisLeft(y)
-		/*.tickFormat(function(d){
-			return "$"+d;
-		})*/
 	g.append("g")
 		.attr("class","y axis")
 		.call(yAxisCall);
@@ -140,21 +92,6 @@ d3.csv("data/random_problemset.csv").then(function(data){
 
 	rects.enter()
 		.append("rect")
-			/*.attr("y", function(d){
-				//console.log(d.revenue)
-				//console.log(y(d.revenue))
-				return y(d.revenue);
-			})
-			.attr("x",function(d){
-				return x(d.month);
-			})
-			.attr("height",function(d){
-				return height - y(d.revenue);
-			})
-			.attr("width", x.bandwidth)
-			.attr("fill","grey")
-			//.attr("stroke","red")
-			//.attr("stroke-width","spx")*/
 			.attr("x",function(d, i){
 				return (i*2.5+1.5)*x.bandwidth();
 			})
@@ -192,30 +129,4 @@ d3.csv("data/random_problemset.csv").then(function(data){
 					return height - y(z);
 			})
 			.attr("fill","indianred")
-
-
-/*	rects.enter()
-		.append("rect")
-			.attr("x",function(d, i){
-				return (i*2.5+1.5)*x.bandwidth();
-			})
-			.attr("y",function(d,i){
-				if(i == 0)
-					return y(a_0 + a_1);
-				else if(i == 1)
-					return y(b_0 + b_1);
-				else if(i == 2)
-					return y(c_0 + c_1);
-			})
-			.attr("width",x.bandwidth)
-			.attr("height",function(d, i){
-				if(i == 0)
-					return height - y(a_1);
-				else if(i == 1)
-					return height - y(b_1);
-				else if(i == 2)
-					return height - y(c_1);
-			})
-			.attr("fill","indianred")*/
-
 })

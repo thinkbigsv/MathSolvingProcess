@@ -1,7 +1,7 @@
 /*
 *    main.js
 *    Mastering Data Visualization with D3.js
-*    Project 1 - Star Break Coffee
+*    Selfreport_barplot
 */
 
 var margin = {left:80, right:20, top:50, bottom:100};
@@ -61,16 +61,9 @@ d3.csv("data/userdata.csv").then(function(data){
 			c_1++;
 	}
 
-	console.log(a_0 , a_1, b_0, b_1, c_0, c_1);
-
-/*	data.forEach(function(d){
-		d = +d
-	})*/
+//	console.log(a_0 , a_1, b_0, b_1, c_0, c_1);
 
 	var x = d3.scaleBand()
-		/*.domain(data.map(function(d){
-			return d.month;
-		}))*/
 		.domain(["concept","strategy","mistake"])
 		.range([0,width])
 		.padding(0.6);
@@ -78,9 +71,6 @@ d3.csv("data/userdata.csv").then(function(data){
 	var size = data.length;
 	console.log(size);
 	var y = d3.scaleLinear()
-		/*.domain([0, d3.max(data,function(d){
-			return d.revenue;
-		})])*/
 		.domain([0,size-1])
 		.range([height,0]);
 
@@ -91,9 +81,6 @@ d3.csv("data/userdata.csv").then(function(data){
 		.call(xAxisCall);
 
 	var yAxisCall = d3.axisLeft(y)
-		/*.tickFormat(function(d){
-			return "$"+d;
-		})*/
 	g.append("g")
 		.attr("class","y axis")
 		.call(yAxisCall);
@@ -103,21 +90,6 @@ d3.csv("data/userdata.csv").then(function(data){
 
 	rects.enter()
 		.append("rect")
-			/*.attr("y", function(d){
-				//console.log(d.revenue)
-				//console.log(y(d.revenue))
-				return y(d.revenue);
-			})
-			.attr("x",function(d){
-				return x(d.month);
-			})
-			.attr("height",function(d){
-				return height - y(d.revenue);
-			})
-			.attr("width", x.bandwidth)
-			.attr("fill","grey")
-			//.attr("stroke","red")
-			//.attr("stroke-width","spx")*/
 			.attr("x",function(d, i){
 				return (i*2.5+1.5)*x.bandwidth();
 			})
