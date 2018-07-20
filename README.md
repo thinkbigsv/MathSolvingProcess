@@ -1,6 +1,7 @@
 # ThinkBig : Analyze math problem solving ability of a student & problem recommendation service
 
 ##### WEB: https://thinkbig.herokuapp.com
+##### Slideshare : https://www.slideshare.net/ChaejungMaeng/math-problem-solving-service
 
 ## Introduction
 A service providing vulnerable user-type math problems to users through personalized self-report
